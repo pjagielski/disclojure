@@ -1,5 +1,5 @@
 (ns repl
-  (:require [disclojure.track :as t]
+  (:require [example.track :as t]
             [disclojure.live :as l]))
 
 (defn raw-track [] (get t/state :raw-track))
