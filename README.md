@@ -2,6 +2,8 @@
 
 A live coding environment for Overtone and Leipzig.
 
+[Name inspiration](https://www.youtube.com/watch?v=W_vM8ePGuRM)
+
 ## Usage
 
 ```clojure
@@ -19,9 +21,10 @@ A live coding environment for Overtone and Leipzig.
 ## Features
 
 ### Drum kits
+TDB
 
 ### Sampler
-
+TDB
 ## License
 
 Copyright © 2016 Piotr Jagielski
