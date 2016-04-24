@@ -2,7 +2,7 @@
 
 A live coding environment for Overtone and Leipzig.
 
-[Name inspiration](https://www.youtube.com/watch?v=W_vM8ePGuRM)
+Named after [Disclosure](https://www.youtube.com/watch?v=W_vM8ePGuRM)
 
 ## Usage
 
