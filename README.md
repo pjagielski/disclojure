@@ -12,10 +12,10 @@ A live coding environment for Overtone and Leipzig.
 (live/jam (track))
 ```
 
-```
+```clojure
 (require '[leipzig.melody :refer :all])
-(require '[disclojure.track :as t])
-(update-track :beat (times 2 t/lean-beat))
+(require '[example.track :as t])
+(update-track :plucky (times 2 t/leanon))
 ```
 
 ## Features
