@@ -6,6 +6,10 @@
 
 (def metro (atom 100))
 
+(defn tap [drum times length & {:keys [amp] :or {amp 1}}]
+  (map #(zipmap [:time :duration :drum :amp]
+                [%1 (- length %1) drum amp]) times))
+
 (defn sampler [meta]
   (->>
     meta
