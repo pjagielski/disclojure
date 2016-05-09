@@ -16,8 +16,7 @@
     (map (fn [[time sample beats amp]]
            (merge {:time time :sample sample :amp (or amp 1) :bpm @metro}
                   (when beats {:beats beats :duration beats}))))
-    (all :part :sampler)
-    (all :duration 0)))
+    (all :part :sampler)))
 
 (defn track [raw-track]
   (->> raw-track
