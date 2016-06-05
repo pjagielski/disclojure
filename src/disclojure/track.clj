@@ -1,6 +1,5 @@
 (ns disclojure.track
-  (:require [overtone.live :as o]
-            [leipzig.melody :refer :all]
+  (:require [leipzig.melody :refer :all]
             [leipzig.temperament :as temperament]
             [disclojure.play]))
 
@@ -13,9 +12,15 @@
 (defn sampler [meta]
   (->>
     meta
-    (map (fn [[time sample beats amp]]
-           (merge {:time time :sample sample :amp (or amp 1) :bpm @metro}
-                  (when beats {:beats beats :duration beats}))))
+    (mapcat
+      (fn [[times sample beats amp start-beat]]
+        (let [base (merge {:sample sample :amp (or amp 1) :bpm @metro}
+                          (when start-beat {:start-beat start-beat})
+                          (when beats {:beats beats :duration beats}))]
+          (if (sequential? times)
+            (map (fn [t] (merge base {:time t})) times)
+            [(merge base {:time times})]))))
+    (sort-by :time)
     (all :part :sampler)))
 
 (defn track [raw-track]
