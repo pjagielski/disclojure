@@ -25,7 +25,7 @@ Initialize the track state:
 ```clojure
 (require '[disclojure.live :as l])
 (def initial-track
-  {:plucky (times 2 leanon)})
+  {:plucky (times 2 melody)})
 
 (defonce state
          (l/reset-track initial-track))
