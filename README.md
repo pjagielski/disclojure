@@ -4,8 +4,7 @@ A live coding environment for Overtone and Leipzig.
 
 ## Usage
 
-1. Create a melody using Leipzig:
-
+Create a melody using Leipzig:
 ```clojure
 (require '[repl :refer :all])
 (require '[leipzig.melody :refer :all])
@@ -17,8 +16,8 @@ A live coding environment for Overtone and Leipzig.
        (all :part :plucky)
        (all :amp 1)))
 ```
-2. Initialize track state:
 
+Initialize the track state:
 ```clojure
 (require '[disclojure.live :as l])
 (def initial-track
@@ -27,8 +26,8 @@ A live coding environment for Overtone and Leipzig.
 (defonce state
          (l/reset-track initial-track))
 ```
-3. Loop your track forever and change on the fly:
 
+Loop your track forever and change on the fly:
 ```clojure
 (require '[leipzig.live :as live])
 (live/jam (l/track))
