@@ -2,6 +2,10 @@
 
 A live coding environment for Overtone and Leipzig.
 
+```clojure
+[pjagielski/disclojure "0.1.0"]
+```
+
 ## Usage
 
 Create a melody using Leipzig:
