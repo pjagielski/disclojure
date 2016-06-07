@@ -2,8 +2,6 @@
 
 A live coding environment for Overtone and Leipzig.
 
-Named after [Disclosure](https://www.youtube.com/watch?v=W_vM8ePGuRM)
-
 ## Usage
 
 1. Create a melody using Leipzig:
@@ -19,7 +17,6 @@ Named after [Disclosure](https://www.youtube.com/watch?v=W_vM8ePGuRM)
        (all :part :plucky)
        (all :amp 1)))
 ```
-
 2. Initialize track state:
 
 ```clojure
@@ -30,7 +27,6 @@ Named after [Disclosure](https://www.youtube.com/watch?v=W_vM8ePGuRM)
 (defonce state
          (l/reset-track initial-track))
 ```
-
 3. Loop your track forever and change on the fly:
 
 ```clojure
@@ -59,7 +55,7 @@ Play a drum sound from a kit:
 (leipzig.live/play-note {:part :beat :drum :kick :amp 1})
 ```
 
-This should play `kick.wav` from drum kit. See "Track helpers"
+This should play `kick.wav` from drum kit. See "Track helpers" for details of creating drum patterns.
 
 ### Sampler
 ```clojure
@@ -82,7 +78,7 @@ So a file named `124_4_worm.wav` would be mapped to following structure:
 {:bpm 124, :beats 4, :name :worm, :sound #<buffer[live]: ...}
 ```
 
-This makes it easy to match sample rate for current BPM of the track. More in next chapter.
+This makes it easy to match sample rate for current BPM of the track. More in the next chapter.
 
 ### Track helpers
 ```clojure
@@ -138,6 +134,8 @@ Define an Overtone synth and map it to Leipzig `live/play-note`:
 ## License
 
 Copyright © 2016 Piotr Jagielski
+
+The project name refers to [Disclosure](https://www.youtube.com/watch?v=W_vM8ePGuRM)
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
