@@ -1,8 +1,8 @@
-(ns example.track
-  (:require [overtone.live :as o]
-            [leipzig.melody :refer :all]
+(ns example.core
+  (:require [leipzig.melody :refer :all]
             [leipzig.scale :as scale]
             [disclojure.play]
+            [disclojure.live :as l]
             [disclojure.track :as t]))
 
 (def leanon-chords
@@ -27,6 +27,5 @@
   {:plucky (times 2 leanon)})
 
 (defonce state
-         {:raw-track (ref initial-track)
-          :track (ref (t/track initial-track))})
+         (l/reset-track initial-track))
 

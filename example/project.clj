@@ -6,5 +6,5 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [disclojure "0.1.0-SNAPSHOT"]]
   :profiles
-    {:repl {:source-paths ["dev" "src/clj"]
+    {:repl {:source-paths ["src"]
             :prep-tasks   ^:replace [["javac"] ["compile"]]}})
