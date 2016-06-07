@@ -2,8 +2,7 @@
   (:require [leipzig.melody :refer :all]
             [leipzig.scale :as scale]
             [disclojure.play]
-            [disclojure.live :as l]
-            [disclojure.track :as t]))
+            [disclojure.live :as l]))
 
 (def leanon-chords
   [[-9 -2 0 2 4]

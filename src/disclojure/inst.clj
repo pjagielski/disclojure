@@ -6,7 +6,7 @@
                level (+ (* 0.85 freq) (env-gen (perc 0 fil-dur) :level-scale cutoff))]
            (-> (pulse freq)
                (lpf level)
-               (free-verb :room 1 :wet 0.45)
+               (free-verb :room 1 :mix 0.45)
                (* env amp)
                pan2)))
 
