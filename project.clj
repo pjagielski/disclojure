@@ -1,4 +1,4 @@
-(defproject pjagielski/disclojure "0.1.1"
+(defproject pjagielski/disclojure "0.1.2-SNAPSHOT"
   :description "A live coding environment for Overtone and Leipzig"
   :url "https://github.com/pjagielski/disclojure"
   :license {:name "Eclipse Public License"
