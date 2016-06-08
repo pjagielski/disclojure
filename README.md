@@ -2,6 +2,10 @@
 
 A live coding environment for Overtone and Leipzig.
 
+```clojure
+[pjagielski/disclojure "0.1.0"]
+```
+
 ## Usage
 
 Create a melody using Leipzig:
@@ -21,7 +25,7 @@ Initialize the track state:
 ```clojure
 (require '[disclojure.live :as l])
 (def initial-track
-  {:plucky (times 2 leanon)})
+  {:plucky (times 2 melody)})
 
 (defonce state
          (l/reset-track initial-track))
