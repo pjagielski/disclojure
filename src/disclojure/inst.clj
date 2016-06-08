@@ -10,7 +10,7 @@
                (* env amp)
                pan2)))
 
-(definst supersaw [freq 440 detune 5 dur 0.2 amp 0.6 cutoff 3500 env-amount 0.5 detune2 5]
+(definst supersaw [freq 440 detune 5 dur 0.2 release 0.5 amp 0.6 cutoff 3500 env-amount 0.5 detune2 5]
          (let [snd-fn (fn [freq]
                         (let [tune (ranged-rand 0.99 1.01)]
                           (-> (lf-saw (* freq tune))
@@ -19,7 +19,7 @@
                lo-saws (splay (repeatedly 5 #(snd-fn (/ freq 2))))
                noise (pink-noise)
                snd (+ (* 0.65 hi-saws) (* 0.85 lo-saws) (* 0.12 noise))
-               env (env-gen (adsr 0.001 0.7 0.2 0.1) (line:kr 1 0 dur) :action FREE)]
+               env (env-gen (adsr 0.001 0.7 0.2 0.1) (line:kr 1 0 (+ dur release)) :action FREE)]
            (-> snd
                (clip2 0.45)
                (rlpf (+ freq (env-gen (adsr 0.001) (line:kr 1 0 dur) :level-scale cutoff)) 0.75)
