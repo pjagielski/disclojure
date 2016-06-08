@@ -9,11 +9,4 @@
                  [leipzig "0.10.0"]
                  [prismatic/plumbing "0.5.3"]]
 
-  :release-tasks [["vcs" "assert-committed"]
-                  ["change" "version" "leiningen.release/bump-version" "release"]
-                  ["vcs" "commit"]
-                  ["vcs" "tag"]
-                  ["deploy" "clojars"]
-                  ["change" "version" "leiningen.release/bump-version"]
-                  ["vcs" "commit"]
-                  ["vcs" "push"]])
+  :deploy-repositories [["releases" :clojars]])
