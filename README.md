@@ -36,8 +36,9 @@ Loop your track forever and change on the fly:
 (require '[leipzig.live :as live])
 (live/jam (l/track))
 (l/assoc-track :plucky (times 2 melody))
-(defn last-frame (fn [e] (>= (:time e) 12)))
-(l/update-track :plucky (partial remove last-frame))
+(def last-frame (fn [e] (>= (:time e) 12)))
+(def remove-last-frame (partial remove last-frame))
+(l/update-track :plucky remove-last-frame)
 ```
 
 ## Features
