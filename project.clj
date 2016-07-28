@@ -7,6 +7,4 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [overtone "0.10.0"]
                  [leipzig "0.10.0"]
-                 [prismatic/plumbing "0.5.3"]]
-
-  :deploy-repositories [["releases" :clojars]])
+                 [prismatic/plumbing "0.5.3"]])
