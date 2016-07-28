@@ -3,7 +3,7 @@
 A live coding environment for Overtone and Leipzig.
 
 ```clojure
-[pjagielski/disclojure "0.1.2"]
+[pjagielski/disclojure "0.1.3"]
 ```
 
 ## Usage
