@@ -1,4 +1,4 @@
-(defproject pjagielski/disclojure "0.1.2"
+(defproject pjagielski/disclojure "0.1.2-SNAPSHOT"
   :description "A live coding environment for Overtone and Leipzig"
   :url "https://github.com/pjagielski/disclojure"
   :license {:name "Eclipse Public License"
@@ -7,4 +7,7 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [overtone "0.10.0"]
                  [leipzig "0.10.0"]
-                 [prismatic/plumbing "0.5.3"]])
+                 [prismatic/plumbing "0.5.3"]]
+
+  :deploy-repositories  [["releases" :clojars]])
+
