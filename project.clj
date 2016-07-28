@@ -1,4 +1,4 @@
-(defproject pjagielski/disclojure "0.1.2-SNAPSHOT"
+(defproject pjagielski/disclojure "0.1.3-SNAPSHOT"
   :description "A live coding environment for Overtone and Leipzig"
   :url "https://github.com/pjagielski/disclojure"
   :license {:name "Eclipse Public License"
@@ -9,5 +9,14 @@
                  [leipzig "0.10.0"]
                  [prismatic/plumbing "0.5.3"]]
 
-  :deploy-repositories  [["releases" :clojars]])
+  :deploy-repositories  [["releases" :clojars]]
+  :release-tasks [["vcs" "assert-committed"]
+                  ["change" "version" "leiningen.release/bump-version" "release"]
+                  ["vcs" "commit"]
+                  ["vcs" "tag"]
+                  ["deploy" "clojars"]
+                  ["change" "version" "leiningen.release/bump-version"]
+                  ["vcs" "commit"]
+                  ["vcs" "push"]]
+  )
 
