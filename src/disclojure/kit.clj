@@ -17,7 +17,6 @@
     (* amp env (scaled-play-buf 2 buf :action FREE))))
 
 (defn- -load-sample [file]
-  (println "loding sample" (.getAbsolutePath file))
   (let [sample (sample (.getAbsolutePath file))
         player (condp = (:n-channels sample)
                       1 mono-player
