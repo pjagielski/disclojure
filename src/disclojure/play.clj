@@ -27,5 +27,6 @@
 
 (defmethod live/play-note :supersaw [{hertz :pitch seconds :duration amp :amp cutoff :cutoff}]
   (when hertz
-    (let [params {:freq hertz :dur seconds :amp (or amp 1) :cutoff (or cutoff 6000)}]
+    (let [params (merge {:freq hertz :dur seconds :amp (or amp 1)}
+                        (when cutoff {:cutoff cutoff}))]
       (apply i/supersaw (to-args (merge (:supersaw @controls) params))))))

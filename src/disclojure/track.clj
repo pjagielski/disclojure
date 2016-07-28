@@ -13,8 +13,8 @@
   (->>
     meta
     (mapcat
-      (fn [[times sample beats amp start-beat]]
-        (let [base (merge {:sample sample :amp (or amp 1) :bpm @metro}
+      (fn [[times sample beats amp start-beat cutoff]]
+        (let [base (merge {:sample sample :amp (or amp 1) :bpm @metro :cutoff (or cutoff 10000)}
                           (when start-beat {:start-beat start-beat})
                           (when beats {:beats beats :duration beats}))]
           (if (sequential? times)
