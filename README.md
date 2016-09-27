@@ -1,6 +1,6 @@
 # Disclojure
 
-A live coding environment for Overtone and Leipzig.
+A live coding environment for [Overtone](https://github.com/overtone/overtone) and [Leipzig](https://github.com/ctford/leipzig).
 
 ```clojure
 [pjagielski/disclojure "0.1.3"]
