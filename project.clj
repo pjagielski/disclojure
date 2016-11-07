@@ -7,7 +7,9 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [overtone "0.10.0"]
                  [leipzig "0.10.0"]
-                 [prismatic/plumbing "0.5.3"]]
+                 [prismatic/plumbing "0.5.3"]
+                 [org.clojure/java.data "0.1.1"]
+                 [org.clojure/math.numeric-tower "0.0.4"]]
 
   :deploy-repositories  [["releases" :clojars]]
   :release-tasks [["vcs" "assert-committed"]

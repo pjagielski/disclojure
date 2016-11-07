@@ -4,11 +4,11 @@
 
 (deftest sampler-test
   (testing "data"
-    (is (= [{:time 0 :sample :test :part :sampler :amp 1 :bpm 100 :beats 8 :duration 8}]
+    (is (= [{:time 0 :sample :test :part :sampler :amp 1 :bpm 100 :beats 8 :duration 8 :cutoff 10000}]
            (track/sampler [[0 :test 8 1]]))))
 
   (testing "start-beat"
-    (is (= [{:time 0 :sample :test :part :sampler :amp 1 :bpm 100 :beats 8 :start-beat 2 :duration 8}]
+    (is (= [{:time 0 :sample :test :part :sampler :amp 1 :bpm 100 :beats 8 :start-beat 2 :duration 8 :cutoff 10000}]
            (track/sampler [[0 :test 8 1 2]]))))
 
   (testing "times"
