@@ -1,5 +1,5 @@
 (ns disclojure.kit
-  (:require [overtone.live :refer :all]
+  (:require [overtone.core :refer :all]
             [clojure.java.io :as io]
             [leipzig.live :as live]))
 

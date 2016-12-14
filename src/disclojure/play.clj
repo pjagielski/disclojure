@@ -2,7 +2,7 @@
   (:require [leipzig.live :as live]
             [leipzig.temperament :refer [equal]]
             [disclojure.inst :as i]
-            [overtone.live :refer :all]
+            [overtone.core :refer :all]
             [overtone.inst.synth :refer :all]))
 
 (def controls (atom {:plucky {:amp 1.0 :cutoff 900}
@@ -16,10 +16,12 @@
 (defn play [name params]
   (live/play-note (merge params {:part name :pitch (equal (:note params))})))
 
-(defn find-instruments []
-  (->> (ns-interns 'disclojure.inst)
-       (filter (fn [e] (= :overtone.studio.inst/instrument
-                          (type (val e)))))))
+(defn find-instruments
+  ([] (find-instruments 'disclojure.inst))
+  ([ns]
+   (->> (ns-interns ns)
+        (filter (fn [e] (= :overtone.studio.inst/instrument
+                           (type (val e))))))))
 
 (doseq [[name play-fn] (find-instruments)]
   (let [key (keyword name)]

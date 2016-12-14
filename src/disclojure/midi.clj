@@ -2,7 +2,7 @@
   (:use clojure.java.data)
   (:require [clojure.math.numeric-tower :as math])
   (:import (java.io File)
-           (javax.sound.midi MidiSystem ShortMessage MetaMessage Track)))
+           (javax.sound.midi MidiSystem ShortMessage MetaMessage)))
 
 ; code taken from https://github.com/pbaille/bartok/blob/new-prims/src/bartok/midi/parser.clj but it's not realeased anywhere...
 
@@ -178,10 +178,14 @@
                        [note])]
     [position duration (concat result to-add)]))
 
-(defn from-midi-notes [parsed-midi-file]
+(defn- midi-notes->leipzig [parsed-midi-file]
   (as-> parsed-midi-file $
         (filter-msg-type :note $)
         (reduce map-midi-note [0 0 []] $)
         (nth $ 2)
         (map (fn [n] (clojure.set/rename-keys n {:position :time})) $)
         (map (fn [n] (select-keys n [:pitch :time :duration])) $)))
+
+(defn midi-file->notes [file-name]
+  (-> (parse-midi-file file-name)
+      midi-notes->leipzig))

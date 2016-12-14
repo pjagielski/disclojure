@@ -1,13 +1,32 @@
 (ns disclojure.inst
-  (:require [overtone.live :refer :all]))
+  (:require [overtone.core :refer :all]))
 
-(definst plucky [freq 440 dur 1 amp 1 cutoff 3000 fil-dur 0.1]
-         (let [env (env-gen (asr 0 1 1) (line:kr 1.0 0.0 dur) :action FREE)
-               level (+ (* 0.85 freq) (env-gen (perc 0 fil-dur) :level-scale cutoff))]
-           (-> (pulse freq)
+(defcgen echo [in {:default 0} max-delay {:default 1.0} delay-time {:default 0.4} decay-time {:default 2.0}]
+         (:ar (pan2 (+ in (* 0.25 (comb-n in max-delay delay-time decay-time)))))
+         (:default :ar))
+
+(definst plucky [freq 440 dur 1 amp 0.8 cutoff 1000 delay-m 2 peak-freq 800]
+         (let [env (env-gen (asr 0.02 0.5 1 -4) (line:kr 1.0 0.0 dur) :action FREE)
+               level (+ (* 0.25 freq) (env-gen (perc 0 (* dur 1.25)) :level-scale cutoff))
+               snd (splay [(lf-saw freq) (pulse freq 0.3) (pink-noise)])]
+           (-> snd
+               (+ (delay-c snd 0.005 (ranged-rand 0.0001 0.2)))
                (lpf level)
-               (free-verb :room 1 :mix 0.45)
+               (clip2 0.85)
+               (free-verb :room 2 :mix 0.40)
                (* env amp)
+               (b-peak-eq peak-freq 0.6 12)
+               (echo :delay-time (* dur delay-m) :max-delay dur))))
+
+(definst pad [freq 220 dur 1.0 amp 0.2 pan 0 cutoff 1800 fil-amt 250]
+         (let [env (env-gen (asr 0.01 0.6 1) (line:kr 1.0 0.0 dur) :action FREE)
+               fil-env (+ fil-amt (env-gen (perc 0 dur) :level-scale cutoff))
+               osc (mix [(sin-osc freq) (saw (+ 2 freq))])]
+           (-> osc
+               (lpf fil-env)
+               (+ (* 0.4 (comb-n:ar osc (* dur 8) dur)))
+               (* env amp)
+               (free-verb :room 0.7 :mix 0.25)
                pan2)))
 
 (definst supersaw [freq 440 dur 0.2 release 0.5 amp 0.6 cutoff 3500 env-amount 0.5]
