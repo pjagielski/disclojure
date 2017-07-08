@@ -4,7 +4,7 @@
   (:import (java.io File)
            (javax.sound.midi MidiSystem ShortMessage MetaMessage)))
 
-; code taken from https://github.com/pbaille/bartok/blob/new-prims/src/bartok/midi/parser.clj but it's not realeased anywhere...
+; code taken from https://github.com/pbaille/bartok/blob/new-prims/src/bartok/midi/parser.clj but it's not released anywhere...
 
 (defmacro or=
   ([expr coll] `(or= ~expr ~@coll))
@@ -101,17 +101,17 @@
     (program-change? msg)
     {:type     :program-change
      :channel  (.getChannel msg)
-     :data     (.getData msg)
+     :data     [(.getData1 msg) (.getData2 msg)]
      :position tick}
     (chan-after? msg)
     {:type     :chan-after
      :channel  (.getChannel msg)
-     :data     (.getData msg)
+     :data     [(.getData1 msg) (.getData2 msg)]
      :position tick}
     (pitch-wheel? msg)
     {:type     :pitch-wheel
      :channel  (.getChannel msg)
-     :data     (.getData msg)
+     :data     [(.getData1 msg) (.getData2 msg)]
      :position tick}
     :else nil))
 

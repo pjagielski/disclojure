@@ -13,4 +13,8 @@
     (let [notes (->> (midi/midi-file->notes "test/snake-pluck.mid")
                      (fill-to-beats 16))]
       (is (not-empty notes))
-      (is (= (last notes) {:pitch nil, :time 63/4, :duration 1/4})))))
+      (is (= (last notes) {:pitch nil, :time 63/4, :duration 1/4}))))
+
+  (testing "should parse other messages"
+    (is (not-empty (midi/midi-file->notes "test/Miami2Ibiza.mid")))
+    (is (not-empty (midi/midi-file->notes "test/big-synth.mid")))))

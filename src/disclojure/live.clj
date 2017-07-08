@@ -1,5 +1,7 @@
 (ns disclojure.live
-  (:require [disclojure.track :as t]))
+  (:require [disclojure.track :as t]
+            [leipzig.live :as live]
+            [overtone.at-at :as at-at]))
 
 (def initial-state
   {:raw-track (ref {})
@@ -38,3 +40,16 @@
   (dosync
     (ref-set (:raw-track state) raw-track)
     (commit-track)))
+
+(def pool (at-at/mk-pool :cpu-count 128))
+
+(def play-fn
+  (fn [epoch note]
+    (at-at/at epoch
+              #(live/play-note (dissoc note :time))
+              pool)))
+
+(defn jam []
+  (live/jam (track) play-fn))
+
+(def stop live/stop)

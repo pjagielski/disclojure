@@ -6,10 +6,11 @@
 
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [overtone "0.10.0"]
-                 [leipzig "0.10.0"]
+                 [leipzig "0.11.0-SNAPSHOT"]
                  [prismatic/plumbing "0.5.3"]
                  [org.clojure/java.data "0.1.1"]
-                 [org.clojure/math.numeric-tower "0.0.4"]]
+                 [org.clojure/math.numeric-tower "0.0.4"]
+                 [proto-repl "0.3.1"]]
 
   :deploy-repositories  [["releases" :clojars]]
   :release-tasks [["vcs" "assert-committed"]
@@ -19,6 +20,4 @@
                   ["deploy" "clojars"]
                   ["change" "version" "leiningen.release/bump-version"]
                   ["vcs" "commit"]
-                  ["vcs" "push"]]
-  )
-
+                  ["vcs" "push"]])

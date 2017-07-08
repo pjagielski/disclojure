@@ -24,10 +24,16 @@
               {:time 7/2 :pitch 2 :duration 1/2}]))))
 
   (testing "should fill end"
-    (let [notes (->> [{:time 0 :pitch 2 :duration 7/2} {:time 7/2 :pitch 2 :duration 1/4}]
+    (let [notes (->> [{:time 0 :pitch 2 :duration 7/2}
+                      {:time 7/2 :pitch 2 :duration 1/4}]
                      (fill-to-beats 4))]
       (is (= notes
              [{:time 0 :pitch 2 :duration 7/2}
               {:time 7/2 :pitch 2 :duration 1/4}
-              {:time 15/4 :pitch nil :duration 1/4}])))))
+              {:time 15/4 :pitch nil :duration 1/4}]))))
 
+  (testing "should fill sampler note"
+    (let [notes (->> [{:time 0 :sample :test :duration 2}]
+                   (fill-to-beats 4 {:sample :none :bpm 120}))]
+      (is (= notes [{:time 0 :sample :test :duration 2}
+                    {:time 2 :sample :none :duration 2 :bpm 120}])))))

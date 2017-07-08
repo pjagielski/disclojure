@@ -6,7 +6,7 @@
   ([start end notes]
    (->> notes
         (filter (fn [n] (and (>= (:time n) start)
-                             (< (+ (:duration n) (:time n)) end))) )
+                             (< (+ (:duration n) (:time n)) end))))
         (wherever :time :time (fn [t] (- t start))))))
 
 (defn- fill-first [notes]
@@ -15,15 +15,18 @@
       (concat [{:time 0 :pitch nil :duration (:time first)}] notes)
       notes)))
 
-(defn- fill-last [beats notes]
+(defn- fill-last [beats empty-note notes]
   (let [last (last notes)
         gap-time (+ (:time last) (:duration last))
         gap (- beats gap-time)
         add-gap? (> gap 0)]
     (concat notes
-            (when add-gap? [{:pitch nil :time gap-time :duration gap}]))))
+            (when add-gap? [(merge empty-note {:time gap-time :duration gap})]))))
 
-(defn fill-to-beats [beats notes]
-  (->> notes
-       fill-first
-       (fill-last beats)))
+(defn fill-to-beats
+  ([beats notes] (fill-to-beats beats {:pitch nil} notes))
+  ([beats empty-note notes]
+   (->>
+     notes
+     fill-first
+     (fill-last beats empty-note))))
