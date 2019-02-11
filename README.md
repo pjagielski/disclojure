@@ -137,7 +137,7 @@ Define an Overtone synth and map it to Leipzig `live/play-note`:
 
 ## License
 
-Copyright © 2016 Piotr Jagielski
+Copyright © 20162-019 Piotr Jagielski
 
 The project name refers to [Disclosure](https://www.youtube.com/watch?v=W_vM8ePGuRM)
 
